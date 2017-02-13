@@ -1,0 +1,1 @@
+export withLinkState from './lib/withLinkState';
