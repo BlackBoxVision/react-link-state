@@ -20,7 +20,7 @@ const loaders = [
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: path.resolve('src', 'main.js'),
+  entry: path.resolve(__dirname + '/src', 'main.js'),
   output: {
     path: path.resolve('build'),
     filename: '[name].js',
@@ -28,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve('src', 'index.tpl.html'),
+      template: path.resolve(__dirname + '/src', 'index.tpl.html'),
       inject: 'body',
       filename: 'index.html'
     })
