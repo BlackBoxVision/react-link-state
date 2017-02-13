@@ -31,7 +31,6 @@ import React from 'react';
 import { withLinkState } from 'link-state-hoc';
 
 class LoginView extends React.Component {
-
   render() {
     return (
       <div>
@@ -43,7 +42,7 @@ class LoginView extends React.Component {
               </label>
             </div>
             <div>
-              <input name='username' {...this.props.linkState('username')}/>
+              <input ref="username" name='username' {...this.props.linkState('username')}/>
             </div>
           </div>
           <div>
@@ -53,7 +52,7 @@ class LoginView extends React.Component {
               </label>
             </div>
             <div>
-              <input name='password' {...this.props.linkState('password')}/>
+              <input ref="password" name='password' {...this.props.linkState('password')}/>
             </div>
           </div>
           <div>
@@ -66,7 +65,14 @@ class LoginView extends React.Component {
     );
   }
   
-  handleSubmit = event => console.log(`These are the values -> ${JSON.stringify(this.state, null, 2)}`);
+  handleSubmit = event => {
+    const formValues = {
+      username: this.refs.username.value,
+      password: this.refs.password.value
+    };
+  
+    console.log(`These are the values -> ${JSON.stringify(formValues, null, 2)}`);
+  }
 }
 
 export default withLinkState(LoginView);
