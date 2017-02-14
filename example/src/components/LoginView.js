@@ -7,7 +7,7 @@ import LoginContainer from '../styled-components/CenterContainer';
 import RightContainer from '../styled-components/RightContainer';
 import LoginForm from '../styled-components/Form';
 
-@withLinkState({})
+@withLinkState(['email', 'password'])
 class LoginView extends React.Component {
     render() {
         const emailLink = this.props.linkState('email');
