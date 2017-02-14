@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { withLinkState } from 'link-state-hoc';
+import withLinkState from '../../src/lib/withLinkState';
 
 class LoginView extends React.Component {
     render() {
@@ -12,14 +12,13 @@ class LoginView extends React.Component {
                 <form method="GET" onSubmit={this.handleSubmit}>
                     <div>
                         <div>
-                            <label for='username'>
+                            <label htmlFor='username'>
                                 Username
                             </label>
                         </div>
                         <div>
                             <input
                                 name='username'
-                                ref={username => this.username = username}
                                 value={usernameLink.value}
                                 onChange={usernameLink.onChange}
                             />
@@ -27,14 +26,13 @@ class LoginView extends React.Component {
                     </div>
                     <div>
                         <div>
-                            <label for='password'>
+                            <label htmlFor='password'>
                                 Password
                             </label>
                         </div>
                         <div>
                             <input
                                 name='password'
-                                ref={password => this.password = password}
                                 value={passwordLink.value}
                                 onChange={passwordLink.onChange}
                             />
