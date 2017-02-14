@@ -5,13 +5,20 @@ const withLinkState = Component => {
         state = {};
 
         render() {
-            return <Component linkState={this.linkState}/>;
+            return (
+                <Component
+                    linkState={this.linkState}
+                    getValue={this.getValue}
+                />
+            );
         }
 
         linkState = key => ({
             value: this.state[key] || '',
             onChange: event => this.setState({ [key]: event.target.value })
         });
+
+        getValue = key => this.state[key] || '';
     }
 
     return LinkStateComponent;

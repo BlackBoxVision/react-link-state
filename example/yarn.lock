@@ -1787,9 +1787,9 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
-link-state-hoc@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/link-state-hoc/-/link-state-hoc-1.0.0.tgz#236e30993e72cb03a3c28330def7f667d17a244b"
+link-state-hoc@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/link-state-hoc/-/link-state-hoc-1.3.0.tgz#8737865b18e7138d6f9caf32c0d632c27c5fa5f8"
 
 loader-utils@^0.2.11:
   version "0.2.16"
@@ -2302,7 +2302,7 @@ regenerator-transform@0.9.8:
 
 regex-cache@^0.4.2:
   version "0.4.3"
-  resolved "http://registry.npmjs.org/regex-cache/-/regex-cache-0.4.3.tgz#9b1a6c35d4d0dfcef5711ae651e8e9d3d7114145"
+  resolved "https://registry.yarnpkg.com/regex-cache/-/regex-cache-0.4.3.tgz#9b1a6c35d4d0dfcef5711ae651e8e9d3d7114145"
   dependencies:
     is-equal-shallow "^0.1.3"
     is-primitive "^2.0.0"

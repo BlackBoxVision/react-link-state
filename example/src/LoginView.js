@@ -52,8 +52,8 @@ class LoginView extends React.Component {
 
     handleSubmit = e => {
         const formValues = {
-            username: this.username.value,
-            password: this.password.value
+            username: this.props.getValue('username'),
+            password: this.props.getValue('password')
         };
 
         console.log(`These are the values -> ${JSON.stringify(formValues, null, 2)}`);

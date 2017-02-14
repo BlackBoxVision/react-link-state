@@ -1,3 +1,1 @@
-import withLinkState from './lib/withLinkState';
-
-export default withLinkState;
+export withLinkState from './lib/withLinkState';
