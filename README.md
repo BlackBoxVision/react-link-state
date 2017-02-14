@@ -23,7 +23,13 @@ npm install --save link-state-hoc
 
 ##Usage
 
-To use this library you should import **withLinkState**, and in your **export** declaration should call this function. **withLinkState** component injects a function called **linkState**, this method takes a **key** (the key represents the portion of the state you want to update), and returns a **JSON object** containing a **value + onChange** handler that you must pass to your input component. 
+Import **withLinkState** and in your component export default declaration call it. 
+
+**withLinkState** provides you with two functions injected as props: 
+
+- **linkState** -> takes a **key** as a param and returns an Object containing the current value taken from the state, and  the onChange event handler for the input. 
+
+- **getValue** -> takes a **key** and returns the value stored in the component's state.
 
 This is an example code:
 
@@ -34,6 +40,9 @@ import { withLinkState } from 'link-state-hoc';
 
 class LoginView extends React.Component {
   render() {
+    const usernameLink = this.props.linkState('username');
+    const passwordLink = this.props.linkState('password');
+  
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -44,7 +53,10 @@ class LoginView extends React.Component {
               </label>
             </div>
             <div>
-              <input ref="username" name='username' {...this.props.linkState('username')}/>
+              <input
+                name='username'
+                value={usernameLink.value}
+                onChange={usernameLink.onChange}/>
             </div>
           </div>
           <div>
@@ -54,7 +66,10 @@ class LoginView extends React.Component {
               </label>
             </div>
             <div>
-              <input ref="password" name='password' {...this.props.linkState('password')}/>
+              <input 
+                name='password'
+                value={passwordLink.value}
+                onChange={passwordLink.onChange}/>
             </div>
           </div>
           <div>
@@ -67,10 +82,10 @@ class LoginView extends React.Component {
     );
   }
   
-  handleSubmit = event => {
+  handleSubmit = e => {
     const formValues = {
-      username: this.refs.username.value,
-      password: this.refs.password.value
+      username: this.props.getValue('username'),
+      password: this.props.getValue('password')
     };
   
     console.log(`These are the values -> ${JSON.stringify(formValues, null, 2)}`);
