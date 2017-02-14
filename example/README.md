@@ -1,4 +1,4 @@
-# WebpackBin project
+#Link State HOC Example
 
 ## Start
 
