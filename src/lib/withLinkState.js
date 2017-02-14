@@ -9,6 +9,7 @@ const withLinkState = Component => {
                 <Component
                     linkState={this.linkState}
                     getValue={this.getValue}
+                    {...this.props}
                 />
             );
         }
