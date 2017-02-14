@@ -1,5 +1,9 @@
 import React from 'react';
-import {render} from 'react-dom';
-import LoginView from './LoginView.js';
+import ReactDOM from 'react-dom';
+import injectEventTapPlugin from 'react-tap-event-plugin';
 
-render(<LoginView/>, document.querySelector('#app'));
+import MainApp from './components/MainApp';
+
+injectEventTapPlugin();
+
+ReactDOM.render(<MainApp/>, document.querySelector('#app'));

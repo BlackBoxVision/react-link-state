@@ -1,6 +1,6 @@
 import React from 'react';
 
-const withLinkState = Component => {
+const withLinkState = () => Component => {
     class LinkStateComponent extends React.Component {
         state = {};
 
