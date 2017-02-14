@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
+import SendIcon from 'material-ui/svg-icons/content/send';
 
 import withLinkState from '../../../src/lib/withLinkState';
 
@@ -12,6 +13,9 @@ class LoginView extends React.Component {
     render() {
         const emailLink = this.props.linkState('email');
         const passwordLink = this.props.linkState('password');
+
+        const emailError = this.props.getValue('emailError');
+        const passwordError = this.props.getValue('passwordError');
 
         return (
             <LoginContainer
@@ -32,6 +36,7 @@ class LoginView extends React.Component {
                                 floatingLabelText='Email'
                                 value={emailLink.value}
                                 onChange={emailLink.onChange}
+                                errorText={emailError}
                                 floatingLabelFixed
                                 fullWidth
                             />
@@ -41,11 +46,14 @@ class LoginView extends React.Component {
                                 floatingLabelText='Password'
                                 value={passwordLink.value}
                                 onChange={passwordLink.onChange}
+                                errorText={passwordError}
                                 floatingLabelFixed
                                 fullWidth
                             />
                             <RightContainer>
                                 <RaisedButton
+                                    icon={<SendIcon/>}
+                                    labelPosition='before'
                                     type='submit'
                                     label='login'
                                     primary
@@ -61,12 +69,19 @@ class LoginView extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        const formValues = {
-            email: this.props.getValue('email'),
-            password: this.props.getValue('password')
-        };
+        const email = this.props.getValue('email');
+        const password = this.props.getValue('password');
 
-        console.log(`These are the values -> ${JSON.stringify(formValues, null, 2)}`);
+        const emailErrorMessage = !email ? 'Email shouldn\'t be empty' : '';
+        const passwordErrorMessage = !password ? 'Password shouldn\'t be empty' : '';
+
+        this.props.updateState('emailError', emailErrorMessage);
+        this.props.updateState('passwordError', passwordErrorMessage);
+
+        if (email && password) {
+            //TODO handle login
+            console.log(`These are the values -> ${JSON.stringify({email, password}, null, 2)}`);
+        }
     }
 }
 
