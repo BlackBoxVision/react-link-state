@@ -23,11 +23,11 @@ const withLinkState = (keys = []) => Component => {
         }
 
         linkState = key => ({
-            value: this.state[key],
+            value: this.state[key] || '',
             onChange: event => this.setState({ [key]: event.target.value })
         });
 
-        getValue = key => this.state[key];
+        getValue = key => this.state[key] || '';
     }
 
     return LinkStateComponent;
