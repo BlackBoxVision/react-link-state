@@ -25,7 +25,13 @@ const withLinkState = (keys = []) => Component => {
 
         linkState = key => ({
             value: this.state[key] || '',
-            onChange: event => this.updateState(key, event.target.value)
+            onChange: (event, callback) => {
+                this.updateState(key, event.target.value);
+
+                if (callback && typeof(callback) == 'function') {
+                    callback(this.getValue(key));
+                }
+            }
         });
 
         getValue = key => this.state[key] || '';

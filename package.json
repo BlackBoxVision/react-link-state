@@ -1,6 +1,6 @@
 {
   "name": "link-state-hoc",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": " linkState comes to the rescue of your event handlers!",
   "main": "dist/index.js",
   "scripts": {
