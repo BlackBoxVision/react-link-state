@@ -9,7 +9,7 @@ class LoginView extends React.Component {
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form method="GET" onSubmit={this.handleSubmit}>
                     <div>
                         <div>
                             <label for='username'>

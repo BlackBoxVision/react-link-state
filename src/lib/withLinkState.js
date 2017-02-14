@@ -9,7 +9,7 @@ const withLinkState = Component => {
         }
 
         linkState = key => ({
-            value: this.state[key],
+            value: this.state[key] || '',
             onChange: event => this.setState({ [key]: event.target.value })
         });
     }

@@ -21,5 +21,6 @@
     "webpack-dev-server": "1.14.1"
   },
   "author": "BlackBox Vision",
-  "license": "MIT"
+  "license": "MIT",
+  "main": "index.js"
 }
