@@ -64,10 +64,7 @@ class LoginView extends React.Component {
                         subtitle='Please, log in with your credentials'
                     />
                     <CardText>
-                        <LoginForm
-                            method='GET'
-                            onSubmit={this.handleSubmit}
-                        >
+                        <LoginForm onSubmit={this.handleSubmit}>
                             <TextField
                                 type='email'
                                 name='username-input'
@@ -100,7 +97,9 @@ class LoginView extends React.Component {
         );
     }
 
-    handleSubmit = () => {
+    handleSubmit = event => {
+        event.preventDefault();
+    
         const formValues = {
             email: this.props.getValue('email'),
             password: this.props.getValue('password')
@@ -143,10 +142,7 @@ class LoginView extends React.Component {
                         subtitle='Please, log in with your credentials'
                     />
                     <CardText>
-                        <LoginForm
-                            method='GET'
-                            onSubmit={this.handleSubmit}
-                        >
+                        <LoginForm onSubmit={this.handleSubmit}>
                             <TextField
                                 type='email'
                                 name='username-input'
@@ -179,7 +175,9 @@ class LoginView extends React.Component {
         );
     }
 
-    handleSubmit = () => {
+    handleSubmit = event => {
+        event.preventDefault();
+    
         const formValues = {
             email: this.props.getValue('email'),
             password: this.props.getValue('password')
