@@ -1,8 +1,16 @@
 import React from 'react';
 
-const withLinkState = () => Component => {
+const withLinkState = (keys = []) => Component => {
+    const defaultState = {};
+
+    if (!Array.isArray(keys)) {
+        throw new Error('keys must be an Array of Strings!');
+    }
+
+    keys.forEach(key => defaultState[key] = '');
+
     class LinkStateComponent extends React.Component {
-        state = {};
+        state = defaultState;
 
         render() {
             return (
@@ -15,11 +23,11 @@ const withLinkState = () => Component => {
         }
 
         linkState = key => ({
-            value: this.state[key] || '',
+            value: this.state[key],
             onChange: event => this.setState({ [key]: event.target.value })
         });
 
-        getValue = key => this.state[key] || '';
+        getValue = key => this.state[key];
     }
 
     return LinkStateComponent;
