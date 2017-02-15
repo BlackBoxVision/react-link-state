@@ -213,8 +213,6 @@ class LoginView extends React.Component {
     }
 }
 
-export default LoginView;
-
 export default withLinkState(['email', 'password'])(LoginView);
 ```
 
