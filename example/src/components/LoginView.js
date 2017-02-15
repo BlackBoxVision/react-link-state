@@ -72,11 +72,8 @@ class LoginView extends React.Component {
         const email = this.props.getValue('email');
         const password = this.props.getValue('password');
 
-        const emailErrorMessage = !email ? 'Email shouldn\'t be empty' : '';
-        const passwordErrorMessage = !password ? 'Password shouldn\'t be empty' : '';
-
-        this.props.updateState('emailError', emailErrorMessage);
-        this.props.updateState('passwordError', passwordErrorMessage);
+        this.props.updateState('emailError', email ? '' : 'Email shouldn\'t be empty');
+        this.props.updateState('passwordError', password ? '' : 'Password shouldn\'t be empty');
 
         if (email && password) {
             //TODO handle login
