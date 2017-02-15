@@ -21,7 +21,7 @@ yarn add link-state-hoc
 npm install --save link-state-hoc
 ```
 
-##Usage
+##API Docs
 
 Import **withLinkState** and in your component export default declaration call it or use it as a decorator.
 
@@ -29,34 +29,87 @@ Import **withLinkState** and in your component export default declaration call i
 
 **withLinkState** provides you with two functions injected as props: 
 
-- **linkState** -> takes a **key** as a param and returns an Object containing the current value taken from the state, and  the onChange event handler for the input. 
+- **linkState** -> takes a **key** and a **callback** as params and returns an Object containing the current value taken from the state, and  the onChange event handler for the input. The **callback** parameter is a function that takes the value received by the onChange event and performs a mutation over it. Just like this one:
+
+```javascript
+const callback = value => value + 'aaa';
+```
 
 - **getValue** -> takes a **key** and returns the value stored in the component's state.
 
 - **updateState** -> takes a **key** and **value**, and then updates the component's state.
 
-##**Calling as a Decorator**
+- **getState** -> returns the component state.
+
+##Example usage
+
+The code of this snippets is located at [Example Folder](https://github.com/BlackBoxVision/link-state-hoc/tree/master/example).
+
+The example code snippets show also how to separate concerns, so, you can call **withLinkState** in an outer component (Smart) and render a simple pure component (Dumb).
+
+###ES6 Class + Decorator Example
+
+- **LoginContainer.js**
 
 ```javascript
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+
+import { withLinkState } from 'link-state-hoc';
+import LoginView from '../components/LoginView';
+
+@withLinkState(['email', 'password', 'emailError', 'passwordError'])
+class LoginContainer extends React.Component {
+    static propTypes = {
+        getState: PropTypes.func,
+        linkState: PropTypes.func,
+        getValue: PropTypes.func,
+        updateState: PropTypes.func
+    };
+
+    render () {
+        const { getState, getValue, linkState, updateState } = this.props;
+
+        return (
+            <LoginView
+                getState={getState}
+                getValue={getValue}
+                linkState={linkState}
+                updateState={updateState}
+            />
+        );
+    }
+}
+
+export default LoginContainer;
+```
+
+- **LoginView.js**
+
+```javascript
+import React, { Component, PropTypes } from 'react';
 import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
-import withLinkState from '../../../src/lib/withLinkState';
+import createSubmitHandler from '../../../helpers/createSubmitHandler';
 
-import LoginContainer from styled;
-import RightContainer from styled;
-import LoginForm from styled;
+import LoginContainer from './styled/CenterContainer';
+import RightContainer from './styled/RightContainer';
+import LoginForm from './styled/Form';
 
 
-@withLinkState(['email', 'password'])
-class LoginView extends React.Component {
+class LoginView extends Component {
+    static propTypes = {
+        getState: PropTypes.func,
+        linkState: PropTypes.func,
+        getValue: PropTypes.func,
+        updateState: PropTypes.func
+    };
+
     render() {
-        const emailLink = this.props.linkState('email');
-        const passwordLink = this.props.linkState('password');
+        const { linkState, getValue, getState, updateState } = this.props;
 
-        const emailError = this.props.getValue('emailError');
-        const passwordError = this.props.getValue('passwordError');
+        const emailLink = linkState('email');
+        const passwordLink = linkState('password');
 
         return (
             <LoginContainer
@@ -64,20 +117,20 @@ class LoginView extends React.Component {
                 height='600px'
                 paddingTop='100px'
             >
-                <Card containerStyle={{ padding: '20px' }}>
+                <Card containerStyle={{padding: '20px'}}>
                     <CardTitle
                         title='Login'
                         subtitle='Please, log in with your credentials'
                     />
                     <CardText>
-                        <LoginForm onSubmit={this.handleSubmit}>
+                        <LoginForm onSubmit={createSubmitHandler({ getState, updateState })}>
                             <TextField
                                 type='email'
                                 name='username-input'
                                 floatingLabelText='Email'
                                 value={emailLink.value}
                                 onChange={emailLink.onChange}
-                                errorText={emailError}
+                                errorText={getValue('emailError')}
                                 floatingLabelFixed
                                 fullWidth
                             />
@@ -87,7 +140,7 @@ class LoginView extends React.Component {
                                 floatingLabelText='Password'
                                 value={passwordLink.value}
                                 onChange={passwordLink.onChange}
-                                errorText={passwordError}
+                                errorText={getValue('passwordError')}
                                 floatingLabelFixed
                                 fullWidth
                             />
@@ -105,115 +158,98 @@ class LoginView extends React.Component {
                 </Card>
             </LoginContainer>
         );
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-
-        const email = this.props.getValue('email');
-        const password = this.props.getValue('password');
-
-        this.props.updateState('emailError', email ? '' : 'Email shouldn\'t be empty');
-        this.props.updateState('passwordError', password ? '' : 'Password shouldn\'t be empty');
-
-        if (email && password) {
-            //TODO handle login
-            console.log(`These are the values -> ${JSON.stringify({email, password}, null, 2)}`);
-        }
     }
 }
 
 export default LoginView;
 ```
 
-##**Calling in export default**
+###Pure Component Example: 
 
+- **PureLoginContainer.js**
+```javascript 
+import { withLinkState } from 'link-state-hoc';
+import PureLoginView from '../components/PureLoginView';
+
+const PureLoginContainer = withLinkState(['email', 'password', 'emailError', 'passwordError'])(PureLoginView);
+
+export default PureLoginContainer;
+```
+
+- **PureLoginView.js**
 ```javascript
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
-import withLinkState from '../../../src/lib/withLinkState';
+import createSubmitHandler from '../../../helpers/createSubmitHandler';
 
-import LoginContainer from styled;
-import RightContainer from styled;
-import LoginForm from styled;
+import LoginContainer from './styled/CenterContainer';
+import RightContainer from './styled/RightContainer';
+import LoginForm from './styled/Form';
 
 
-class LoginView extends React.Component {
-    render() {
-        const emailLink = this.props.linkState('email');
-        const passwordLink = this.props.linkState('password');
+const PureLoginView = ({ linkState, getState, updateState, getValue }) => {
+    const emailLink = linkState('email');
+    const passwordLink = linkState('password');
 
-        const emailError = this.props.getValue('emailError');
-        const passwordError = this.props.getValue('passwordError');
-
-        return (
-            <LoginContainer
-                width='500px'
-                height='600px'
-                paddingTop='100px'
-            >
-                <Card containerStyle={{ padding: '20px' }}>
-                    <CardTitle
-                        title='Login'
-                        subtitle='Please, log in with your credentials'
-                    />
-                    <CardText>
-                        <LoginForm onSubmit={this.handleSubmit}>
-                            <TextField
-                                type='email'
-                                name='username-input'
-                                floatingLabelText='Email'
-                                value={emailLink.value}
-                                onChange={emailLink.onChange}
-                                errorText={emailError}
-                                floatingLabelFixed
-                                fullWidth
+    return (
+        <LoginContainer
+            width='500px'
+            height='600px'
+            paddingTop='100px'
+        >
+            <Card containerStyle={{ padding: '20px' }}>
+                <CardTitle
+                    title='Login'
+                    subtitle='Please, log in with your credentials'
+                />
+                <CardText>
+                    <LoginForm onSubmit={createSubmitHandler({ getState, updateState })}>
+                        <TextField
+                            type='email'
+                            name='username-input'
+                            floatingLabelText='Email'
+                            value={emailLink.value}
+                            onChange={emailLink.onChange}
+                            errorText={getValue('emailError')}
+                            floatingLabelFixed
+                            fullWidth
+                        />
+                        <TextField
+                            type='password'
+                            name='password-input'
+                            floatingLabelText='Password'
+                            value={passwordLink.value}
+                            onChange={passwordLink.onChange}
+                            errorText={getValue('passwordError')}
+                            floatingLabelFixed
+                            fullWidth
+                        />
+                        <RightContainer>
+                            <RaisedButton
+                                icon={<SendIcon/>}
+                                labelPosition='before'
+                                type='submit'
+                                label='login'
+                                primary
                             />
-                            <TextField
-                                type='password'
-                                name='password-input'
-                                floatingLabelText='Password'
-                                value={passwordLink.value}
-                                onChange={passwordLink.onChange}
-                                errorText={passwordError}
-                                floatingLabelFixed
-                                fullWidth
-                            />
-                            <RightContainer>
-                                <RaisedButton
-                                    icon={<SendIcon/>}
-                                    labelPosition='before'
-                                    type='submit'
-                                    label='login'
-                                    primary
-                                />
-                            </RightContainer>
-                        </LoginForm>
-                    </CardText>
-                </Card>
-            </LoginContainer>
-        );
-    }
+                        </RightContainer>
+                    </LoginForm>
+                </CardText>
+            </Card>
+        </LoginContainer>
+    );
+};
 
-    handleSubmit = event => {
-        event.preventDefault();
+PureLoginView.propTypes = {
+    getState: PropTypes.func,
+    linkState: PropTypes.func,
+    getValue: PropTypes.func,
+    updateState: PropTypes.func
+};
 
-        const email = this.props.getValue('email');
-        const password = this.props.getValue('password');
-
-        this.props.updateState('emailError', email ? '' : 'Email shouldn\'t be empty');
-        this.props.updateState('passwordError', password ? '' : 'Password shouldn\'t be empty');
-
-        if (email && password) {
-            //TODO handle login
-            console.log(`These are the values -> ${JSON.stringify({email, password}, null, 2)}`);
-        }
-    }
-}
-
-export default withLinkState(['email', 'password'])(LoginView);
+export default PureLoginView;
 ```
 
 ##Issues
