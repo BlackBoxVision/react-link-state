@@ -23,13 +23,13 @@ const withLinkState = (keys = []) => Component => {
             );
         }
 
-        linkState = key => ({
+        linkState = (key, callback) => ({
             value: this.state[key] || '',
-            onChange: (event, callback) => {
+            onChange: event => {
                 this.updateState(key, event.target.value);
 
-                if (callback && typeof(callback) == 'function') {
-                    callback(this.getValue(key));
+                if (callback && typeof(callback) === 'function') {
+                    callback(event.target.value);
                 }
             }
         });
