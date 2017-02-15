@@ -27,7 +27,7 @@ Import **withLinkState** and in your component export default declaration call i
 
 **You can also pass to withLinkState an Array defining the keys for the component state.**
 
-**withLinkState** provides you with two functions injected as props: 
+**withLinkState** provides you with a set of functions injected as props: 
 
 - **linkState** -> takes a **key** and a **callback** as params and returns an Object containing the current value taken from the state, and  the onChange event handler for the input. The **callback** parameter is a function that takes the value received by the onChange event and performs a mutation over it. Just like this one:
 
