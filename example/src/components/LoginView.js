@@ -73,8 +73,8 @@ class LoginView extends Component {
     }
 
     handleSubmit = event => {
-        const { email, password } = this.props.getState();
         event.preventDefault();
+        const { email, password } = this.props.getState();
 
         this.props.updateState({
             'emailError': email ? '' : 'Email shouldn\'t be empty',
