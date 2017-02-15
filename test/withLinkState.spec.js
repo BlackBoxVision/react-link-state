@@ -14,7 +14,7 @@ const Component = props => (
 
 const WrappedComponent = withLinkState(['testValue'])(Component);
 
-const getRenderedComponent = () => shallow(React.createElement(WrappedComponent));
+const getRenderedComponent = (component = WrappedComponent) => shallow(React.createElement(component));
 
 describe('Testing -> <LinkStateComponent/>', () => {
     it('instance of <LinkStateComponent/> is not undefined', () => {
@@ -71,5 +71,29 @@ describe('Testing -> <LinkStateComponent/>', () => {
 
     it('testValue in <WrappedLinkStateComponent/> is not undefined', () => {
         expect(getRenderedComponent().find('testValue')).to.not.equal('undefined');
+    });
+
+    it('testValue in <WrappedLinkStateComponent/> is a String value', () => {
+        expect(getRenderedComponent().state().testValue).to.be.a('string');
+    });
+
+    it('testValue in <WrappedLinkStateComponent/> is an Empty String', () => {
+        expect(getRenderedComponent().state().testValue).to.equal('');
+    });
+
+    it('linkState from <LinkStateComponent/> is a function', () => {
+        expect(getRenderedComponent().props().linkState).to.be.a('function');
+    });
+
+    it('getValue from <LinkStateComponent/> is a function', () => {
+        expect(getRenderedComponent().props().getValue).to.be.a('function');
+    });
+
+    it('getState from <LinkStateComponent/> is a function', () => {
+        expect(getRenderedComponent().props().getState).to.be.a('function');
+    });
+
+    it('updateState from <LinkStateComponent/> is a function', () => {
+        expect(getRenderedComponent().props().updateState).to.be.a('function');
     });
 });
