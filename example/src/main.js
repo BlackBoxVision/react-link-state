@@ -6,4 +6,4 @@ import MainApp from './components/MainApp';
 
 injectEventTapPlugin();
 
-ReactDOM.render(<MainApp/>, document.querySelector('#app'));
+ReactDOM.render(<MainApp pureView/>, document.querySelector('#app'));
