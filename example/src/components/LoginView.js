@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
-import withLinkState from '../../../src/lib/withLinkState';
-
 import createSubmitHandler from '../utils/createSubmitHandler';
 
 import LoginContainer from '../styled-components/CenterContainer';
@@ -11,7 +9,6 @@ import RightContainer from '../styled-components/RightContainer';
 import LoginForm from '../styled-components/Form';
 
 
-@withLinkState(['email', 'password'])
 class LoginView extends Component {
     static propTypes = {
         getState: PropTypes.func,

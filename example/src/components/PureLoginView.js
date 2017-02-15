@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
-import withLinkState from '../../../src/lib/withLinkState';
-
 import createSubmitHandler from '../utils/createSubmitHandler';
 
 import LoginContainer from '../styled-components/CenterContainer';
@@ -12,8 +10,6 @@ import LoginForm from '../styled-components/Form';
 
 
 const PureLoginView = ({ linkState, getState, updateState, getValue }) => {
-    const handleSubmit = createSubmitHandler({ getState, updateState });
-
     const emailLink = linkState('email');
     const passwordLink = linkState('password');
 
@@ -29,7 +25,7 @@ const PureLoginView = ({ linkState, getState, updateState, getValue }) => {
                     subtitle='Please, log in with your credentials'
                 />
                 <CardText>
-                    <LoginForm onSubmit={handleSubmit}>
+                    <LoginForm onSubmit={createSubmitHandler({ getState, updateState })}>
                         <TextField
                             type='email'
                             name='username-input'
@@ -73,4 +69,4 @@ PureLoginView.propTypes = {
     updateState: PropTypes.func
 };
 
-export default withLinkState(['email', 'password'])(PureLoginView);
+export default PureLoginView;

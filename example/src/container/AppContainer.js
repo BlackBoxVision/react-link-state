@@ -3,17 +3,18 @@ import { MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
-import LoginView from './LoginView';
-import PureLoginView from './PureLoginView';
+import LoginContainer from '../container/LoginContainer';
+import PureLoginContainer from '../container/PureLoginContainer';
 
-const MainApp = ({ pureView }) => (
+
+const AppContainer = ({ pureView }) => (
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-        {pureView ? <PureLoginView/> : <LoginView/>}
+        {pureView ? <PureLoginContainer/> : <LoginContainer/>}
     </MuiThemeProvider>
 )
 
-MainApp.propTypes = {
+AppContainer.propTypes = {
     pureView: PropTypes.bool.isRequired
 }
 
-export default MainApp;
+export default AppContainer;

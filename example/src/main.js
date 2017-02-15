@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectEventTapPlugin from 'react-tap-event-plugin';
 
-import MainApp from './components/MainApp';
+import AppContainer from './container/AppContainer';
 
 injectEventTapPlugin();
 
-ReactDOM.render(<MainApp pureView/>, document.querySelector('#app'));
+ReactDOM.render(<AppContainer pureView/>, document.querySelector('#app'));
