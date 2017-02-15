@@ -146,4 +146,21 @@ describe('Testing -> <LinkStateComponent/>', () => {
 
         expect(testValueLink.onChange).to.be.a('function');
     });
+
+    it('Calling manually onChange modifies the state of <LinkStateComponent/>', () => {
+        const renderedComponent = getRenderedComponent();
+        const testValueLink = renderedComponent.props().linkState('testValue');
+
+        let event = {};
+        event['target'] = {};
+        event['target']['value'] = 'hello world';
+
+        testValueLink.onChange(event);
+
+        expect(renderedComponent.props().getValue('testValue')).to.equal('hello world');
+    });
+
+    it('Wrapping a component with withLinkState and passing an array as state keys is the way', () => {
+        expect(withLinkState()(Component)).to.not.throw(new Error('keys must be an Array of Strings!'));
+    });
 });
