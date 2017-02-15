@@ -4,9 +4,12 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 
 import withLinkState from '../../../src/lib/withLinkState';
 
+import createSubmitHandler from '../utils/createSubmitHandler';
+
 import LoginContainer from '../styled-components/CenterContainer';
 import RightContainer from '../styled-components/RightContainer';
 import LoginForm from '../styled-components/Form';
+
 
 @withLinkState(['email', 'password'])
 class LoginView extends Component {
@@ -18,7 +21,7 @@ class LoginView extends Component {
     };
 
     render() {
-        const { linkState, getValue } = this.props;
+        const { linkState, getValue, getState, updateState } = this.props;
 
         const emailLink = linkState('email');
         const passwordLink = linkState('password');
@@ -29,13 +32,13 @@ class LoginView extends Component {
                 height='600px'
                 paddingTop='100px'
             >
-                <Card containerStyle={{ padding: '20px' }}>
+                <Card containerStyle={{padding: '20px'}}>
                     <CardTitle
                         title='Login'
                         subtitle='Please, log in with your credentials'
                     />
                     <CardText>
-                        <LoginForm onSubmit={this.handleSubmit}>
+                        <LoginForm onSubmit={createSubmitHandler({ getState, updateState })}>
                             <TextField
                                 type='email'
                                 name='username-input'
@@ -70,21 +73,6 @@ class LoginView extends Component {
                 </Card>
             </LoginContainer>
         );
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-        const { email, password } = this.props.getState();
-
-        this.props.updateState({
-            'emailError': email ? '' : 'Email shouldn\'t be empty',
-            'passwordError': password ? '' : 'Password shouldn\'t be empty'
-        });
-
-        if (email && password) {
-            //TODO handle login
-            console.log(`These are the values -> ${JSON.stringify({email, password}, null, 2)}`);
-        }
     }
 }
 
