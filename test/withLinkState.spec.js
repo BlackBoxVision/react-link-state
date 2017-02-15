@@ -147,6 +147,19 @@ describe('Testing -> <LinkStateComponent/>', () => {
         expect(testValueLink.onChange).to.be.a('function');
     });
 
+    it('Passing a callback to linkState and calling manually onChange modifies the state of <LinkStateComponent/>', () => {
+        const renderedComponent = getRenderedComponent();
+        const testValueLink = renderedComponent.props().linkState('testValue', value => value + "aaa");
+
+        let event = {};
+        event['target'] = {};
+        event['target']['value'] = 'hello world';
+
+        testValueLink.onChange(event);
+
+        expect(renderedComponent.props().getValue('testValue')).to.equal('hello worldaaa');
+    });
+
     it('Calling manually onChange modifies the state of <LinkStateComponent/>', () => {
         const renderedComponent = getRenderedComponent();
         const testValueLink = renderedComponent.props().linkState('testValue');
@@ -162,5 +175,13 @@ describe('Testing -> <LinkStateComponent/>', () => {
 
     it('Wrapping a component with withLinkState and passing an array as state keys is the way', () => {
         expect(withLinkState()(Component)).to.not.throw(new Error('keys must be an Array of Strings!'));
+    });
+
+    it('When passing a wrong param to withLinkState, it throws an Error containing the message: keys must be an Array of Strings!', () => {
+        try {
+            withLinkState({})(Component);
+        } catch (err) {
+            expect(err.message).to.equal('keys must be an Array of Strings!');
+        }
     });
 });
