@@ -96,4 +96,54 @@ describe('Testing -> <LinkStateComponent/>', () => {
     it('updateState from <LinkStateComponent/> is a function', () => {
         expect(getRenderedComponent().props().updateState).to.be.a('function');
     });
+
+    it('Calling updateState from <LinkStateComponent/> updates the component state', () => {
+        const renderedComponent = getRenderedComponent();
+        renderedComponent.props().updateState({ 'testValue': 'hello world' });
+
+        expect(renderedComponent.state().testValue).to.equal('hello world');
+    });
+
+    it('Calling getValue from <LinkStateComponent/> returns a valid value', () => {
+        const renderedComponent = getRenderedComponent();
+        renderedComponent.props().updateState({ 'testValue': 'hello world' });
+
+        const testValue = renderedComponent.props().getValue('testValue');
+
+        expect(testValue).to.equal('hello world');
+    });
+
+    it('Calling getState from <LinkStateComponent/> returns a valid Object state', () => {
+        expect(getRenderedComponent().props().getState()).to.be.a('object');
+    });
+
+    it('Calling getState and accessing a key from <LinkStateComponent/> state returns a valid value', () => {
+        const renderedComponent = getRenderedComponent();
+        renderedComponent.props().updateState({ 'testValue': 'hello world' });
+
+        const state = renderedComponent.props().getState();
+
+        expect(state['testValue']).to.equal('hello world');
+    });
+
+    it('Calling linkState from <LinkStateComponent/> returns an JSON Object', () => {
+        const renderedComponent = getRenderedComponent();
+        const testValueLink = renderedComponent.props().linkState('testValue');
+
+        expect(testValueLink).to.be.a('object');
+    });
+
+    it('Calling linkState from <LinkStateComponent/> and accessing to JSON Object property "value" is a String', () => {
+        const renderedComponent = getRenderedComponent();
+        const testValueLink = renderedComponent.props().linkState('testValue');
+
+        expect(testValueLink.value).to.be.a('string');
+    });
+
+    it('Calling linkState from <LinkStateComponent/> and accessing to JSON Object property "onChange" is a function', () => {
+        const renderedComponent = getRenderedComponent();
+        const testValueLink = renderedComponent.props().linkState('testValue');
+
+        expect(testValueLink.onChange).to.be.a('function');
+    });
 });
