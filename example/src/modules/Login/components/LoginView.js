@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
-import createSubmitHandler from '../utils/createSubmitHandler';
+import createSubmitHandler from '../../../helpers/createSubmitHandler';
 
-import LoginContainer from '../styled-components/CenterContainer';
-import RightContainer from '../styled-components/RightContainer';
-import LoginForm from '../styled-components/Form';
+import LoginContainer from './styled/CenterContainer';
+import RightContainer from './styled/RightContainer';
+import LoginForm from './styled/Form';
 
 
 class LoginView extends Component {

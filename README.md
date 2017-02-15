@@ -44,9 +44,9 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 
 import withLinkState from '../../../src/lib/withLinkState';
 
-import LoginContainer from '../styled-components/CenterContainer';
-import RightContainer from '../styled-components/RightContainer';
-import LoginForm from '../styled-components/Form';
+import LoginContainer from styled;
+import RightContainer from styled;
+import LoginForm from styled;
 
 
 @withLinkState(['email', 'password'])
@@ -135,9 +135,9 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 
 import withLinkState from '../../../src/lib/withLinkState';
 
-import LoginContainer from '../styled-components/CenterContainer';
-import RightContainer from '../styled-components/RightContainer';
-import LoginForm from '../styled-components/Form';
+import LoginContainer from styled;
+import RightContainer from styled;
+import LoginForm from styled;
 
 
 class LoginView extends React.Component {

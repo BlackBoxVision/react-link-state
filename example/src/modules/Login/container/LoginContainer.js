@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import withLinkState from '../../../src/lib/withLinkState';
+import withLinkState from '../../../../../src/lib/withLinkState';
 import LoginView from '../components/LoginView';
 
 @withLinkState(['email', 'password', 'emailError', 'passwordError'])

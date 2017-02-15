@@ -3,8 +3,8 @@ import { MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
-import LoginContainer from '../container/LoginContainer';
-import PureLoginContainer from '../container/PureLoginContainer';
+import LoginContainer from '../Login/container/LoginContainer';
+import PureLoginContainer from '../Login/container/PureLoginContainer';
 
 
 const AppContainer = ({ pureView }) => (
