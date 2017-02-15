@@ -15,9 +15,10 @@ const withLinkState = (keys = []) => Component => {
         render() {
             return (
                 <Component
-                    updateState={this.updateState}
+                    getState={this.getState}
                     linkState={this.linkState}
                     getValue={this.getValue}
+                    updateState={this.updateState}
                     {...this.props}
                 />
             );
@@ -26,17 +27,24 @@ const withLinkState = (keys = []) => Component => {
         linkState = (key, callback) => ({
             value: this.state[key] || '',
             onChange: event => {
-                this.updateState(key, event.target.value);
+                let value = event.target.value;
 
                 if (callback && typeof(callback) === 'function') {
-                    callback(event.target.value);
+                    const modifiedValue = callback(event.target.value);
+                    value = modifiedValue ? modifiedValue : value;
                 }
+
+                this.updateState({
+                    [key]: value
+                });
             }
         });
 
+        getState = () => this.state;
+
         getValue = key => this.state[key] || '';
 
-        updateState = (key, value) => this.setState({ [key]: value });
+        updateState = (object, callback = undefined) => this.setState(object, callback);
     }
 
     return LinkStateComponent;

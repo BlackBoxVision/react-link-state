@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
@@ -9,13 +9,19 @@ import RightContainer from '../styled-components/RightContainer';
 import LoginForm from '../styled-components/Form';
 
 @withLinkState(['email', 'password'])
-class LoginView extends React.Component {
-    render() {
-        const emailLink = this.props.linkState('email');
-        const passwordLink = this.props.linkState('password');
+class LoginView extends Component {
+    static propTypes = {
+        getState: PropTypes.func,
+        linkState: PropTypes.func,
+        getValue: PropTypes.func,
+        updateState: PropTypes.func
+    };
 
-        const emailError = this.props.getValue('emailError');
-        const passwordError = this.props.getValue('passwordError');
+    render() {
+        const { linkState, getValue } = this.props;
+
+        const emailLink = linkState('email');
+        const passwordLink = linkState('password');
 
         return (
             <LoginContainer
@@ -36,7 +42,7 @@ class LoginView extends React.Component {
                                 floatingLabelText='Email'
                                 value={emailLink.value}
                                 onChange={emailLink.onChange}
-                                errorText={emailError}
+                                errorText={getValue('emailError')}
                                 floatingLabelFixed
                                 fullWidth
                             />
@@ -46,7 +52,7 @@ class LoginView extends React.Component {
                                 floatingLabelText='Password'
                                 value={passwordLink.value}
                                 onChange={passwordLink.onChange}
-                                errorText={passwordError}
+                                errorText={getValue('passwordError')}
                                 floatingLabelFixed
                                 fullWidth
                             />
@@ -67,13 +73,13 @@ class LoginView extends React.Component {
     }
 
     handleSubmit = event => {
+        const { email, password } = this.props.getState();
         event.preventDefault();
 
-        const email = this.props.getValue('email');
-        const password = this.props.getValue('password');
-
-        this.props.updateState('emailError', email ? '' : 'Email shouldn\'t be empty');
-        this.props.updateState('passwordError', password ? '' : 'Password shouldn\'t be empty');
+        this.props.updateState({
+            'emailError': email ? '' : 'Email shouldn\'t be empty',
+            'passwordError': password ? '' : 'Password shouldn\'t be empty'
+        });
 
         if (email && password) {
             //TODO handle login
