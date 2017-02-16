@@ -1,4 +1,5 @@
 node_modules
 /dist/
 .idea
-
+coverage/
+example/link-state-hoc-example/
