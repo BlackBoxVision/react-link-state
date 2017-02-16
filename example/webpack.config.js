@@ -2,21 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const loaders = [
-    {
-        "test": /\.js?$/,
-        "exclude": /node_modules/,
-        "loader": "babel"
-    }
-];
-
 module.exports = {
-    devtool: 'eval-source-map',
     entry: path.resolve(__dirname, 'index.js'),
     output: {
-        path: path.resolve('build'),
-        filename: '[name].js',
-        publicPath: '/'
+        path: path.resolve('link-state-hoc-example'),
+        filename: '[name].js'
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -24,18 +14,31 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production'),
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false,
-            }
-        }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname + '/src', 'index.tpl.html'),
             inject: 'body',
             filename: 'index.html'
+        }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                'screw_ie8': true,
+                'warnings': false,
+                'unused': true,
+                'dead_code': true
+            },
+            output: {
+                comments: false
+            }
         })
     ],
     module: {
-        loaders: loaders
+        loaders: [
+            {
+                "test": /\.js?$/,
+                "exclude": /node_modules/,
+                "loader": "babel"
+            }
+        ]
     }
 };

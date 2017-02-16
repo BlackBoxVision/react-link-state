@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Dialog } from 'material-ui';
+import Dialog from 'material-ui/Dialog/Dialog';
 
 const LoginDialog = ({ open, onRequestClose, email, password }) => {
     return (

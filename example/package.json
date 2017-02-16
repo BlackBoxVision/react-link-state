@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "description": "Example project for linkState HOC",
   "scripts": {
+    "build": "rm -rf build/* | NODE_ENV=production webpack -p --progress",
     "start": "webpack-dev-server --content-base build/"
   },
   "dependencies": {
+    "express": "^4.14.1",
     "material-ui": "^0.17.0",
     "react": "^15.4.0",
     "react-dom": "15.4.0",
@@ -25,6 +27,5 @@
     "webpack-dev-server": "1.14.1"
   },
   "author": "BlackBox Vision",
-  "license": "MIT",
-  "main": "index.js"
+  "license": "MIT"
 }

@@ -1,5 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Card, CardText, CardTitle, RaisedButton, TextField } from 'material-ui';
+import Card from 'material-ui/Card/Card';
+import CardText from 'material-ui/Card/CardText';
+import CardTitle from 'material-ui/Card/CardTitle';
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
+import TextField from 'material-ui/TextField/TextField';
 import SendIcon from 'material-ui/svg-icons/content/send';
 
 import createSubmitHandler from '../../../helpers/createSubmitHandler';
