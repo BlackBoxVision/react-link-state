@@ -8,7 +8,7 @@ const createSubmitHandler = ({ getState, updateState }) => event => {
     });
 
     if (email && password) {
-        console.log(`These are the values -> ${JSON.stringify({email, password}, null, 2)}`);
+        updateState({ 'openDialog': true });
     }
 };
 
