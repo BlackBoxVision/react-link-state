@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectEventTapPlugin from 'react-tap-event-plugin';
 
-import AppContainer from './modules/App/AppContainer';
+import AppContainer from './src/modules/App/AppContainer';
 
 injectEventTapPlugin();
 

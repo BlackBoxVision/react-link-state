@@ -1,5 +1,6 @@
 {
   "name": "link-state-hoc-example",
+  "main": "index.js",
   "version": "1.0.0",
   "description": "Example project for linkState HOC",
   "scripts": {

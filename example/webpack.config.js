@@ -12,7 +12,7 @@ const loaders = [
 
 module.exports = {
     devtool: 'eval-source-map',
-    entry: path.resolve(__dirname + '/src', 'main.js'),
+    entry: path.resolve(__dirname, 'index.js'),
     output: {
         path: path.resolve('build'),
         filename: '[name].js',
