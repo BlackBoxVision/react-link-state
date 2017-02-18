@@ -40,6 +40,10 @@ class BaseComponent extends React.Component { ... }
 
 * [Higher-order component](#higher-order-component)
   + [`withLinkState()`](#withlinkstate)
+     - [`linkState()`](#linkState)
+     - [`updateState()`](#updateState)
+     - [`getState()`](#getState)
+     - [`getValue()`](#getValue)
   
 ## Higher-order component
 
