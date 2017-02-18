@@ -1,13 +1,14 @@
 import React from 'react';
 
+const getDefaultKey = item => Object.keys(item)[0];
+
 const mapValuesToDefaultState = (defaultState, item) => {
     if (typeof item === 'string') {
         defaultState[item] = '';
     }
 
     if (typeof item === 'object') {
-        const { key, value } = item;
-        defaultState[key] = value;
+        defaultState[getDefaultKey(item)] = item[getDefaultKey(item)];
     }
 }
 

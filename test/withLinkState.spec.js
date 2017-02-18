@@ -187,8 +187,7 @@ describe('Testing -> <LinkStateComponent/>', () => {
     
     it('Wrapping a component with withLinkState and passing an array with objects is the way too', () => {
         const WrappedComponent = withLinkState([{ 
-            'key': 'testValue', 
-            'value': 'This is a test value' 
+            'testValue': 'This is a test value'
         }])(Component);
         
         const renderedComponent = getRenderedComponent(WrappedComponent);
