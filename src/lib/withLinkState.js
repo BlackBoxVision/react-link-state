@@ -11,14 +11,14 @@ const mapValuesToDefaultState = (defaultState, item) => {
     }
 }
 
-const withLinkState = (state = []) => Component => {
+const withLinkState = (baseState = []) => Component => {
     const defaultState = {};
 
-    if (!Array.isArray(state)) {
+    if (!Array.isArray(baseState)) {
         throw new Error('keys must be an Array of Strings/Objects!');
     }
 
-    state.forEach(item => mapValuesToDefaultState(defaultState, item));
+    baseState.forEach(item => mapValuesToDefaultState(defaultState, item));
 
     class LinkStateComponent extends React.Component {
         state = defaultState;
