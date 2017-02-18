@@ -29,7 +29,7 @@ class BaseComponent extends React.Component { ... }
 ### `withLinkState()`
 
 ```javascript
-withLinkState(stateKeys: Array): HigherOrderComponent
+withLinkState(stateKeys: Array<string>): HigherOrderComponent
 ```  
 
 Accepts an Array that is mapped to generate the initialState of the HighOrderComponent. The HigherOrderComponent injects a set of helpers functions
@@ -38,13 +38,13 @@ to manage state updates and access specific values stored in the HigherOrderComp
 ### `linkState()`
 
 ```javascript
-linkState(key: String, callback: Function): Object 
+linkState(key: String, callback: (value: Any) => Any): Object 
 ```  
 
 ### `updateState()`
 
 ```javascript
-updateState(values: Object, callback: Function): Void
+updateState(value: Object, callback: Void => Void): Void
 ```  
 
 ### `getState()`
