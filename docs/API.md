@@ -5,6 +5,7 @@ In these API docs, a **higher-order component (HOC)** refers to a function that 
 **withLinkState** helper is a function that return **higher-order component**:
 
 ```javascript
+//define initialState keys
 const defaultState = ['key1', 'key2', 'key3'];
 
 const hoc = withLinkState(defaultState);
@@ -13,7 +14,7 @@ const EnhancedComponent = hoc(BaseComponent);
 // Same as
 const EnhancedComponent = withLinkState(defaultState)(BaseComponent);
 
-//or
+//or define initialState with key:value
 const defaultState = [{'key1': 'This is the key1'}, {'key2': 10}, {'key3': false}];
 
 const hoc = withLinkState(defaultState);
@@ -26,7 +27,12 @@ const EnhancedComponent = withLinkState(defaultState)(BaseComponent);
 Also, another way to use it, it's as a **decorator**: 
 
 ```javascript
+//define initialState keys
 @withLinkState(['key1', 'key2', 'key3'])
+class BaseComponent extends React.Component { ... }
+
+//or define initialState with key:value
+@withLinkState([{'key1': 'This is the key1'}, {'key2': 10}, {'key3': false}])
 class BaseComponent extends React.Component { ... }
 ```
 
