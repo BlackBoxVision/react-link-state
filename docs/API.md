@@ -61,7 +61,7 @@ The **EnhancedComponent receives a set of helpers functions as props** to deal w
 
 These functions are the following ones:
 
-### `linkState()`
+#### `linkState()`
 
 ```javascript
 linkState(
@@ -81,7 +81,7 @@ linkState(
 }
 ```
 
-### `updateState()`
+#### `updateState()`
 
 ```javascript
 updateState(
@@ -92,7 +92,7 @@ updateState(
 
 **updateState** is a function that takes an **Object**, also it can receive a **callback**, and performs a **setState** over the **EnhancedComponent**.  
 
-### `getState()`
+#### `getState()`
 
 ```javascript
 getState(): Object
@@ -100,7 +100,7 @@ getState(): Object
 
 **getState** is a function that returns the full state contained by the **EnhancedComponent**.
 
-### `getValue()`
+#### `getValue()`
 
 ```javascript
 getValue(
