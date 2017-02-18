@@ -185,7 +185,7 @@ describe('Testing -> <LinkStateComponent/>', () => {
         }
     });
     
-    it('Wrapping a component with withLinkState and passing an array with objects is the way', () => {
+    it('Wrapping a component with withLinkState and passing an array with objects is the way too', () => {
         const WrappedComponent = withLinkState([{ 
             'key': 'testValue', 
             'value': 'This is a test value' 
@@ -193,6 +193,6 @@ describe('Testing -> <LinkStateComponent/>', () => {
         
         const renderedComponent = getRenderedComponent(WrappedComponent);
 
-        expect(renderedComponent).to.not.throw(new Error('keys must be an Array of Strings/Objects!'));
-    })
+        expect(renderedComponent.props().getValue('testValue')).to.equal('This is a test value');
+    });
 });
