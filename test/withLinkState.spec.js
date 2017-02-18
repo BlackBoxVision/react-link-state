@@ -5,10 +5,10 @@ import { shallow } from 'enzyme';
 import withLinkState from '../src/lib/withLinkState';
 
 //Simple component to test behavior
-const Component = props => (
+const Component = ({ linkState, getValue }) => (
     <div>
-        <input name="test" {...props.linkState('testValue')}/>
-        <p>{props.getValue('testValue')}</p>
+        <input name="test" {...linkState('testValue')}/>
+        <p>{getValue('testValue')}</p>
     </div>
 );
 
@@ -174,14 +174,25 @@ describe('Testing -> <LinkStateComponent/>', () => {
     });
 
     it('Wrapping a component with withLinkState and passing an array as state keys is the way', () => {
-        expect(withLinkState()(Component)).to.not.throw(new Error('keys must be an Array of Strings!'));
+        expect(withLinkState()(Component)).to.not.throw(new Error('keys must be an Array of Strings/Objects!'));
     });
 
     it('When passing a wrong param to withLinkState, it throws an Error containing the message: keys must be an Array of Strings!', () => {
         try {
             withLinkState({})(Component);
         } catch (err) {
-            expect(err.message).to.equal('keys must be an Array of Strings!');
+            expect(err.message).to.equal('keys must be an Array of Strings/Objects!');
         }
     });
+    
+    it('Wrapping a component with withLinkState and passing an array with objects is the way', () => {
+        const WrappedComponent = withLinkState([{ 
+            'key': 'testValue', 
+            'value': 'This is a test value' 
+        }])(Component);
+        
+        const renderedComponent = getRenderedComponent(WrappedComponent);
+
+        expect(renderedComponent).to.not.throw(new Error('keys must be an Array of Strings/Objects!'));
+    })
 });
