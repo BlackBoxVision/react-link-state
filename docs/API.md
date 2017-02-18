@@ -49,7 +49,7 @@ linkState(
 ): Object 
 ```  
 
-**linkState** is a function that takes a **key** that represents the portion of the state you want to be update, and a **callback** that takes a value and returns the value mutated. 
+**linkState** is a function that takes a **key** that represents the portion of the state you want to be updated, and a **callback** that takes a **value** and returns the **value mutated**. 
 
 **linkState** returns an Object containing the following properties:
 
@@ -69,11 +69,15 @@ updateState(
 ): Void
 ```  
 
+**updateState** is a function that takes an **Object**, also it can receive a **callback**, and performs a **setState** over the **EnhancedComponent**.  
+
 #### `getState()`
 
 ```javascript
 getState(): Object
 ```  
+
+**getState** is a function that returns the full state contained by the **EnhancedComponent**.
 
 #### `getValue()`
 
@@ -83,3 +87,4 @@ getValue(
 ): Any
 ```  
 
+**getValue** is a function that takes a **key** and returns the **value** stored in the **EnhancedComponent**'s state.
