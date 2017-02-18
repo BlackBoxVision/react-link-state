@@ -15,7 +15,7 @@ const EnhancedComponent = withLinkState(['key1', 'key2', 'key3'])(BaseComponent)
 Also, another way to use it, it's as a **decorator**: 
 
 ```javascript
-withLinkState(['key1', 'key2', 'key3'])
+@withLinkState(['key1', 'key2', 'key3'])
 class BaseComponent extends React.Component { ... }
 ```
 
@@ -29,33 +29,57 @@ class BaseComponent extends React.Component { ... }
 ### `withLinkState()`
 
 ```javascript
-withLinkState(stateKeys: Array<string>): HigherOrderComponent
+withLinkState(
+    stateKeys: Array<string>
+): HigherOrderComponent
 ```  
 
-Accepts an Array that is mapped to generate the initialState of the HighOrderComponent. The HigherOrderComponent injects a set of helpers functions
-to manage state updates and access specific values stored in the HigherOrderComponent's state. The functions injected are:
+Accepts an Array that is mapped to generate the **initial state** of the **EnhancedComponent**. 
 
-### `linkState()`
+The **EnhancedComponent receives a set of helpers functions as props** to deal with state retrieve/update and input event handlers creation. 
+
+These functions are the following ones:
+
+#### `linkState()`
 
 ```javascript
-linkState(key: String, callback: (value: Any) => Any): Object 
+linkState(
+    key: String, 
+    callback: (value: Any) => Any
+): Object 
 ```  
 
-### `updateState()`
+**linkState** is a function that takes a **key** that represents the portion of the state you want to be update, and a **callback** that takes a value and returns the value mutated. 
+
+**linkState** returns an Object containing the following properties:
 
 ```javascript
-updateState(value: Object, callback: Void => Void): Void
+{
+  value: String,
+  onChange: Event => Void
+}
+```
+
+#### `updateState()`
+
+```javascript
+updateState(
+    value: Object, 
+    callback: Void => Void
+): Void
 ```  
 
-### `getState()`
+#### `getState()`
 
 ```javascript
 getState(): Object
 ```  
 
-### `getValue()`
+#### `getValue()`
 
 ```javascript
-getValue(key: String): Any
+getValue(
+    key: String
+): Any
 ```  
 
