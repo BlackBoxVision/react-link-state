@@ -3,7 +3,10 @@ import React, { Component, PropTypes } from 'react';
 import withLinkState from '../../../../../src/lib/withLinkState';
 import LoginView from '../components/LoginView';
 
-@withLinkState(['email', 'password', 'emailError', 'passwordError'])
+import defaultState from '../../../helpers/defaultState';
+
+
+@withLinkState(defaultState)
 class LoginContainer extends React.Component {
     static propTypes = {
         getState: PropTypes.func,

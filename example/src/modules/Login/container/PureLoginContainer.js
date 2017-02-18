@@ -1,6 +1,7 @@
 import withLinkState from '../../../../../src/lib/withLinkState';
 import PureLoginView from '../components/PureLoginView';
 
-const PureLoginContainer = withLinkState(['email', 'password', 'emailError', 'passwordError'])(PureLoginView);
+import defaultState from '../../../helpers/defaultState';
 
-export default PureLoginContainer;
+
+export default withLinkState(defaultState)(PureLoginView);
