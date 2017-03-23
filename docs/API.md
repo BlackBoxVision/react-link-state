@@ -1,4 +1,4 @@
-#API
+# API
 
 In these API docs, a **higher-order component (HOC)** refers to a function that accepts a single React component and returns a new React component.
 
