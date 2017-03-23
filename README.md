@@ -9,7 +9,7 @@ The idea of this module started from this post **[Using linkState in your React 
 
 Also, this could be an upgrade from the [**linkState** mixin](https://facebook.github.io/react/docs/two-way-binding-helpers.html). 
 
-##Installation
+## Installation
 
 **YARN**
 
@@ -23,18 +23,18 @@ yarn add link-state-hoc
 npm install --save link-state-hoc
 ```
 
-##API Docs
+## API Docs
 
 [Read them here](docs/API.md)
 
-##Issues
+## Issues
 
 If you found a bug, or you have an answer, or whatever. Please, open an [issue](https://github.com/BlackBoxVision/link-state-hoc/issues). I will do the best to fix it, or help you.
 
-##Contributing
+## Contributing
 
 Of course, if you see something that you want to upgrade from this library, or a bug that needs to be solved, **PRs are welcome!**
 
-##License
+## License
 
 Distributed under the **MIT license**. See [LICENSE](https://github.com/BlackBoxVision/link-state-hoc/blob/master/LICENSE) for more information.
