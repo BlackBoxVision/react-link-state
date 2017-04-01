@@ -1,4 +1,4 @@
-# LinkState HOC
+# React LinkState
 > :fire_engine: linkState comes to the rescue of your event handlers!
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/link-state-hoc.svg)](https://badge.fury.io/js/link-state-hoc) [![npm downloads](https://img.shields.io/npm/dm/link-state-hoc.svg)](https://www.npmjs.com/package/link-state-hoc)  [![Build Status](https://travis-ci.org/BlackBoxVision/link-state-hoc.svg?branch=master)](https://travis-ci.org/BlackBoxVision/link-state-hoc) [![codecov](https://codecov.io/gh/BlackBoxVision/link-state-hoc/branch/master/graph/badge.svg)](https://codecov.io/gh/BlackBoxVision/link-state-hoc) [![Coverage Status](https://coveralls.io/repos/github/BlackBoxVision/link-state-hoc/badge.svg)](https://coveralls.io/github/BlackBoxVision/link-state-hoc?branch=master)
